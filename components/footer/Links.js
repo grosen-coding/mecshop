@@ -13,6 +13,7 @@ export default function Links() {
               height={1000}
               src="/../public/images/can-icon.jpg"
               alt="MEC Logo"
+              priority
             />
           ) : (
             <b>{link.heading}</b>
