@@ -1,0 +1,44 @@
+/* ----- VARIABLES ----- */
+/* --border-radius: 12px; */
+/* ----- GLOBAL ----- */
+.container {
+  max-width: 1550px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.btn_primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: rgb(43, 102, 56);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.btn_outlined {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: rgb(43, 102, 56);
+  background: #f8f8f8;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
