@@ -9,7 +9,7 @@ const nextConfig = {
     prependData: `@import "./base.scss";`,
   },
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    domains: ["avatars.githubusercontent.com", "res.cloudinary.com"],
 
     // remotePatterns: [
     //   {
