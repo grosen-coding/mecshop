@@ -76,7 +76,7 @@ export default function Top({ country }) {
                 </div>
               </li>
             )}
-            {visible && <UserMenu loggedIn={session} />}
+            {visible && <UserMenu session={session} />}
           </ul>
         </ul>
       </div>

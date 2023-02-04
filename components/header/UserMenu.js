@@ -1,15 +1,16 @@
 import Image from "next/image";
 import styles from "./styles.module.scss";
 import Link from "next/link";
+import { signOut, signIn } from "next-auth/react";
 
-export default function UserMenu({ loggedIn }) {
+export default function UserMenu({ session }) {
   return (
     <div className={styles.menu}>
       <h4>Welcome to MEC</h4>
-      {loggedIn ? (
+      {session ? (
         <div className={styles.flex}>
           <Image
-            src="/../public/images/can-icon.jpg"
+            src={session.user.image}
             width={100}
             height={100}
             alt="User icon"
@@ -18,14 +19,16 @@ export default function UserMenu({ loggedIn }) {
           />
           <div className={styles.col}>
             <span>Welcome Back,</span>
-            <h3>User Name</h3>
-            <span>Sign Out</span>
+            <h3>{session.user.name}</h3>
+            <span onClick={() => signOut()}>Sign Out</span>
           </div>
         </div>
       ) : (
         <div className={styles.flex}>
           <button className={styles.btn_primary}>Register</button>
-          <button className={styles.btn_outlined}>Login</button>
+          <button className={styles.btn_outlined} onClick={() => signIn()}>
+            Login
+          </button>
         </div>
       )}
       <ul>
