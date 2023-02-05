@@ -13,12 +13,10 @@ export default function Main() {
       <div className={styles.main__container}>
         <Link href="/">
           <div className={styles.logo}>
-            <Image
-              width={100}
-              height={100}
-              src="/../public/images/can-icon.jpg"
+            <img
+              src="/images/logos/mec-logo-7.png"
+              style={{ width: "40%" }}
               alt="MEC Logo"
-              priority
             />
           </div>
         </Link>

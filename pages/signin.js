@@ -204,12 +204,9 @@ export default function SignIn({ providers, csrfToken, callbackUrl }) {
                         className={styles.social__btn}
                         onClick={() => signIn(provider.id)}
                       >
-                        <Image
-                          width={100}
-                          height={100}
-                          src={`/../public/icons/${provider.name}.png`}
+                        <img
+                          src={`/icons/${provider.name}.png`}
                           alt={`${provider.name} `}
-                          priority
                         />
                         Sign in with {provider.name}
                       </button>

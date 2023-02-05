@@ -21,13 +21,7 @@ export default function Top({ country }) {
         <div></div>
         <ul className={styles.top__list}>
           <li className={styles.li}>
-            <Image
-              width={100}
-              height={100}
-              src="/../public/images/can-icon.jpg"
-              alt="Can flag"
-              priority
-            />
+            <img src="/images/can-icon.jpg" alt="Can flag" />
             <span>Canada</span>
           </li>
           <li className={styles.li}>
@@ -56,12 +50,7 @@ export default function Top({ country }) {
             {session ? (
               <li className={styles.li} onClick={() => setVisible(!visible)}>
                 <div className={styles.flex}>
-                  <Image
-                    src={session.user.image}
-                    width={30}
-                    height={30}
-                    alt="User Profile Image"
-                  />
+                  <img src={session.user.image} alt="User Profile Image" />
                   {/* <RiAccountPinCircleLine /> */}
                   <span>{session.user.name}</span>
                   <RiArrowDropDownFill />

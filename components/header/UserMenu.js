@@ -9,13 +9,10 @@ export default function UserMenu({ session }) {
       <h4>Welcome to MEC</h4>
       {session ? (
         <div className={styles.flex}>
-          <Image
+          <img
             src={session.user.image}
-            width={100}
-            height={100}
             alt="User icon"
             className={styles.menu__img}
-            priority
           />
           <div className={styles.col}>
             <span>Welcome Back,</span>

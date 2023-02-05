@@ -8,12 +8,10 @@ export default function Links() {
       {links.map((link, i) => (
         <ul key={i}>
           {i === 0 ? (
-            <Image
-              width={1000}
-              height={1000}
-              src="/../public/images/can-icon.jpg"
+            <img
+              src="/images/logos/mec-logo-7.png"
+              style={{ width: "40%" }}
               alt="MEC Logo"
-              priority
             />
           ) : (
             <b>{link.heading}</b>
