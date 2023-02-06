@@ -291,7 +291,7 @@ export const userSwiperArray = [
   },
 ];
 
-export const flashDealsArray = [
+export const promoDealsArray = [
   {
     image:
       "https://img.ltwebstatic.com/images3_pi/2022/09/15/1663220709c947ca4ad9aefd9c1f4baf5915653468_thumbnail_600x.webp",

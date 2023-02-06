@@ -24,8 +24,8 @@ export default function Offers() {
         <Link href="/browse">Shop now</Link>
       </div>
       <Swiper
-        slidesPerView={3}
-        spaceBetween={10}
+        slidesPerView={4}
+        spaceBetween={15}
         pagination={{
           clickable: true,
         }}
