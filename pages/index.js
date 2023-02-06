@@ -17,12 +17,13 @@ import {
   homeImprovSwiper,
 } from "@/data/home";
 import ProductsSwiper from "@/components/productsSwiper";
-import ProductCard from "@/components/productCard";
+import Product from "@/models/Product";
+import ProductCard from "@/components/ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import db from "@/utils/db";
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ country }) {
+export default function Home({ country, products }) {
   const isMedium = useMediaQuery({ query: "(max-width:850px)" });
   const isMobile = useMediaQuery({ query: "(max-width:550px)" });
   const { data: session } = useSession();
@@ -75,11 +76,11 @@ export default function Home({ country }) {
             header="House Improvements"
             bg="#5a31f4"
           />
-          {/* <div className={styles.products}>
+          <div className={styles.products}>
             {products.map((product) => (
               <ProductCard product={product} key={product._id} />
             ))}
-          </div> */}
+          </div>
         </div>
       </div>
       <Footer country={country} />
@@ -88,6 +89,10 @@ export default function Home({ country }) {
 }
 
 export async function getServerSideProps() {
+  db.connectDb();
+
+  const products = await Product.find().sort({ createdAt: -1 }).lean();
+  console.log(products);
   let data = await axios
     .get("https://api.ipregistry.co/?key=7oln6wvatiy6f6ce")
     .then((res) => {
@@ -99,7 +104,7 @@ export async function getServerSideProps() {
   console.log(data);
   return {
     props: {
-      // products: JSON.parse(JSON.stringify(products)),
+      products: JSON.parse(JSON.stringify(products)),
       // country: { name: data.name, flag: data.flag.emojitwo },
 
       // TEMP FOR DEVELOPMENT
