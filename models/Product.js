@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 const { ObjectId } = mongoose.Schema;
+
+// Review Schema
 const reviewSchema = new mongoose.Schema({
   reviewBy: {
     type: ObjectId,
@@ -28,6 +30,8 @@ const reviewSchema = new mongoose.Schema({
   images: [],
   likes: [],
 });
+
+// Product Schema
 const productSchema = new mongoose.Schema(
   {
     name: {
