@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import ProductSwiper from "./ProductSwiper";
@@ -10,14 +9,14 @@ export default function ProductCard({ product }) {
   const [images, setImages] = useState(product.subProducts[active]?.images);
   const [prices, setPrices] = useState(
     product.subProducts[active]?.sizes
-      .map((s, i) => {
-        return <React.Fragment key={i}>{s.price}</React.Fragment>;
+      .map((s) => {
+        return s.price;
       })
       .sort((a, b) => {
         return a - b;
       })
   );
-  const [stylesNew, setStylesNew] = useState(
+  const [styless, setStyless] = useState(
     product.subProducts.map((p) => {
       return p.color;
     })
@@ -26,8 +25,8 @@ export default function ProductCard({ product }) {
     setImages(product.subProducts[active].images);
     setPrices(
       product.subProducts[active]?.sizes
-        .map((s, i) => {
-          return <React.Fragment key={i}>{s.price}</React.Fragment>;
+        .map((s) => {
+          return s.price;
         })
         .sort((a, b) => {
           return a - b;
@@ -55,23 +54,23 @@ export default function ProductCard({ product }) {
         )}
         <div className={styles.product__infos}>
           <h1>
-            {product.name.length > 35
-              ? `${product.name.substring(0, 35)}...`
+            {product.name.length > 45
+              ? `${product.name.substring(0, 45)}...`
               : product.name}
           </h1>
           <span>
             {prices.length === 1
-              ? `CAD${prices[0]}$`
-              : `CAD${prices[0]}-${prices[prices.length - 1]}$`}
+              ? `USD${prices[0]}$`
+              : `USD${prices[0]}-${prices[prices.length - 1]}$`}
           </span>
           <div className={styles.product__colors}>
-            {stylesNew &&
-              stylesNew.map((style, i) =>
+            {styless &&
+              styless.map((style, i) =>
                 style.image ? (
                   <img
                     key={i}
                     src={style.image}
-                    className={i == active ? styles.active : undefined}
+                    className={i == active && styles.active}
                     onMouseOver={() => {
                       setImages(product.subProducts[i].images);
                       setActive(i);

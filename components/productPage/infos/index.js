@@ -9,35 +9,110 @@ import { BsHandbagFill, BsHeart } from "react-icons/bs";
 import Share from "./share";
 import Accordian from "./Accordian";
 import SimilarSwiper from "./SimilarSwiper";
-
+import axios from "axios";
+import DialogModal from "../../dialogModal";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, updateCart } from "../../../store/cartSlice";
+import { hideDialog, showDialog } from "../../../store/DialogSlice";
+import { signIn, useSession } from "next-auth/react";
 export default function Infos({ product, setActiveImg }) {
   const router = useRouter();
-
+  const dispatch = useDispatch();
+  const { data: session } = useSession();
   const [size, setSize] = useState(router.query.size);
   const [qty, setQty] = useState(1);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const { cart } = useSelector((state) => ({ ...state }));
 
+  useEffect(() => {
+    dispatch(hideDialog());
+  }, [dispatch]);
   useEffect(() => {
     setSize("");
     setQty(1);
   }, [router.query.style]);
   useEffect(() => {
     if (qty > product.quantity) {
-      setQty(
-        product.quantity,
-        setError(
-          "Sorry, the quantity you have chosen is more than in-stock. Try and lower the Qty"
-        )
+      setQty(product.quantity);
+    }
+  }, [router.query.size, qty, product.quantity]);
+  const addToCartHandler = async () => {
+    if (!router.query.size) {
+      setError("Please Select a size");
+      return;
+    }
+    const { data } = await axios.get(
+      `/api/product/${product._id}?style=${product.style}&size=${router.query.size}`
+    );
+    if (qty > data.quantity) {
+      setError(
+        "The Quantity you have chosen is more than currently in-stock. Try and lower the Qty"
+      );
+    } else if (data.quantity < 1) {
+      setError("Sorry, this Product is out of stock.");
+      return;
+    } else {
+      let _uid = `${data._id}_${product.style}_${router.query.size}`;
+      let exist = cart.cartItems.find((p) => p._uid === _uid);
+      if (exist) {
+        let newCart = cart.cartItems.map((p) => {
+          if (p._uid == exist._uid) {
+            return { ...p, qty: qty };
+          }
+          return p;
+        });
+        dispatch(updateCart(newCart));
+      } else {
+        dispatch(
+          addToCart({
+            ...data,
+            qty,
+            size: data.size,
+            _uid,
+          })
+        );
+      }
+    }
+  };
+  ///---------------------------------
+  const handleWishlist = async () => {
+    try {
+      if (!session) {
+        return signIn();
+      }
+      const { data } = await axios.put("/api/user/wishlist", {
+        product_id: product._id,
+        style: product.style,
+      });
+      dispatch(
+        showDialog({
+          header: "Product Added to Wishlist Successfully",
+          msgs: [
+            {
+              msg: data.message,
+              type: "success",
+            },
+          ],
+        })
+      );
+    } catch (error) {
+      dispatch(
+        showDialog({
+          header: "Wishlist Error",
+          msgs: [
+            {
+              msg: error.response.data.message,
+              type: "error",
+            },
+          ],
+        })
       );
     }
-  }, [router.query.size]);
-  //  }, [router.query.size, qty, product.quantity]);
-
-  ///---------------------------------
-
+  };
   return (
     <div className={styles.infos}>
+      <DialogModal />
       <div className={styles.infos__container}>
         <h1 className={styles.infos__name}>{product.name}</h1>
         <h2 className={styles.infos__sku}>{product.sku}</h2>
@@ -123,11 +198,15 @@ export default function Infos({ product, setActiveImg }) {
           </button>
         </div>
         <div className={styles.infos__actions}>
-          <button>
+          <button
+            disabled={product.quantity < 1}
+            style={{ cursor: `${product.quantity < 1 ? "not-allowed" : ""}` }}
+            onClick={() => addToCartHandler()}
+          >
             <BsHandbagFill />
             <b>ADD TO CART</b>
           </button>
-          <button>
+          <button onClick={() => handleWishlist()}>
             <BsHeart />
             WISHLIST
           </button>

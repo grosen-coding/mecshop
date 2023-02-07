@@ -16,7 +16,7 @@ export default function AddReview({ product, setReviews }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(hideDialog());
-  }, []);
+  }, [dispatch]);
   const [size, setSize] = useState("");
   const [style, setStyle] = useState("");
   const [fit, setFit] = useState("");
