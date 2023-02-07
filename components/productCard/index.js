@@ -10,14 +10,14 @@ export default function ProductCard({ product }) {
   const [images, setImages] = useState(product.subProducts[active]?.images);
   const [prices, setPrices] = useState(
     product.subProducts[active]?.sizes
-      .map((s) => {
-        return s.price;
+      .map((s, i) => {
+        return <React.Fragment key={i}>{s.price}</React.Fragment>;
       })
       .sort((a, b) => {
         return a - b;
       })
   );
-  const [styless, setStyless] = useState(
+  const [stylesNew, setStylesNew] = useState(
     product.subProducts.map((p) => {
       return p.color;
     })
@@ -26,8 +26,8 @@ export default function ProductCard({ product }) {
     setImages(product.subProducts[active].images);
     setPrices(
       product.subProducts[active]?.sizes
-        .map((s) => {
-          return s.price;
+        .map((s, i) => {
+          return <React.Fragment key={i}>{s.price}</React.Fragment>;
         })
         .sort((a, b) => {
           return a - b;
@@ -55,23 +55,23 @@ export default function ProductCard({ product }) {
         )}
         <div className={styles.product__infos}>
           <h1>
-            {product.name.length > 45
-              ? `${product.name.substring(0, 45)}...`
+            {product.name.length > 35
+              ? `${product.name.substring(0, 35)}...`
               : product.name}
           </h1>
           <span>
             {prices.length === 1
-              ? `USD${prices[0]}$`
-              : `USD${prices[0]}-${prices[prices.length - 1]}$`}
+              ? `CAD${prices[0]}$`
+              : `CAD${prices[0]}-${prices[prices.length - 1]}$`}
           </span>
           <div className={styles.product__colors}>
-            {styless &&
-              styless.map((style, i, idx) =>
+            {stylesNew &&
+              stylesNew.map((style, i) =>
                 style.image ? (
                   <img
-                    key={idx}
+                    key={i}
                     src={style.image}
-                    className={i == active && styles.active}
+                    className={i == active ? styles.active : undefined}
                     onMouseOver={() => {
                       setImages(product.subProducts[i].images);
                       setActive(i);
@@ -80,7 +80,7 @@ export default function ProductCard({ product }) {
                   />
                 ) : (
                   <span
-                    key={idx}
+                    key={i}
                     style={{ backgroundColor: `${style.color}` }}
                     onMouseOver={() => {
                       setImages(product.subProducts[i].images);

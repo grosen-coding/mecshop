@@ -21,7 +21,7 @@ import Product from "@/models/Product";
 import ProductCard from "@/components/ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import db from "@/utils/db";
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ country, products }) {
   const isMedium = useMediaQuery({ query: "(max-width:850px)" });

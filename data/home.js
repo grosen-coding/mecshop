@@ -45,6 +45,7 @@ export const offersArray = [
 ];
 export const menuArray = [
   {
+    id: 1,
     name: "Women's Fashion",
     link: "",
     subMenu: [
@@ -57,6 +58,7 @@ export const menuArray = [
     images: [],
   },
   {
+    id: 2,
     name: "Men's Fashion",
     link: "",
     subMenu: [
@@ -69,6 +71,7 @@ export const menuArray = [
     images: [],
   },
   {
+    id: 3,
     name: "Electronics",
     link: "",
     subMenu: [
@@ -81,6 +84,7 @@ export const menuArray = [
     images: [],
   },
   {
+    id: 4,
     name: "Jewlery & Watches",
     link: "",
     subMenu: [
@@ -93,6 +97,7 @@ export const menuArray = [
     images: [],
   },
   {
+    id: 5,
     name: "Home, Pet & Appliances",
     link: "",
     subMenu: [
@@ -105,6 +110,7 @@ export const menuArray = [
     images: [],
   },
   {
+    id: 6,
     name: "Beauty, Health & Hair",
     link: "",
     subMenu: [
@@ -118,6 +124,7 @@ export const menuArray = [
   },
 
   {
+    id: 7,
     name: "Shoes,Sneakers,Heels",
     link: "",
     subMenu: [
@@ -131,6 +138,7 @@ export const menuArray = [
   },
 
   {
+    id: 8,
     name: "Accessories",
     link: "",
     subMenu: [
@@ -144,6 +152,7 @@ export const menuArray = [
   },
 
   {
+    id: 9,
     name: "Sports & Entertainment ",
     link: "",
     subMenu: [
@@ -156,6 +165,7 @@ export const menuArray = [
     images: [],
   },
   {
+    id: 10,
     name: "Kids & Babies",
     link: "",
     subMenu: [
@@ -168,6 +178,7 @@ export const menuArray = [
     images: [],
   },
   {
+    id: 11,
     name: "Movies & Television",
     link: "",
     subMenu: [
@@ -180,6 +191,7 @@ export const menuArray = [
     images: [],
   },
   {
+    id: 12,
     name: "Gaming, Video Games",
     link: "",
     subMenu: [
@@ -192,6 +204,7 @@ export const menuArray = [
     images: [],
   },
   {
+    id: 13,
     name: "Phones & Telecommunications",
     link: "",
     subMenu: [
@@ -204,6 +217,7 @@ export const menuArray = [
     images: [],
   },
   {
+    id: 14,
     name: "Toys & Hobbies",
     link: "",
     subMenu: [
@@ -216,6 +230,7 @@ export const menuArray = [
     images: [],
   },
   {
+    id: 15,
     name: "Gifts & Crafts",
     link: "",
     subMenu: [
@@ -228,6 +243,7 @@ export const menuArray = [
     images: [],
   },
   {
+    id: 16,
     name: "Machinery",
     link: "",
     subMenu: [
@@ -240,6 +256,7 @@ export const menuArray = [
     images: [],
   },
   {
+    id: 17,
     name: "Security, Safety",
     link: "",
     subMenu: [

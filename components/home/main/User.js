@@ -82,8 +82,8 @@ export default function User() {
               marginTop: "1rem",
             }}
           >
-            {userSwiperArray.map((item) => (
-              <SwiperSlide key={item}>
+            {userSwiperArray.map((item, idx) => (
+              <SwiperSlide key={idx}>
                 <Link href="">
                   <img src={item.image} alt="" />
                 </Link>
